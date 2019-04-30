@@ -45,26 +45,26 @@ class EBCI(object):
                   c=1, gamma=1, kappa=1):
         samples = self.perturbation(instance, perturbation_size)
         distance_fn = self.pairwise_distance(distance_metric)
-        ppos_scores = list()
-        pneg_scores = list()
+        fact_scores = list()
+        contrast_scores = list()
 
         for sample in samples:
-            ppos_loss = self.ppos_loss_fn(sample, class_label, predict_fn, kappa)
-            ppos_distance = distance_fn(instance, sample)[0]
-            ppos_score = c * ppos_loss + gamma * ppos_distance
-            ppos_scores.append(ppos_score)
+            fact_loss = self.fact_loss_fn(sample, class_label, predict_fn, kappa)
+            fact_distance = distance_fn(instance, sample)[0]
+            fact_score = c * fact_loss + gamma * fact_distance
+            fact_scores.append(fact_score)
 
-            pneg_loss = self.pneg_loss_fn(sample, class_label, predict_fn, kappa)
-            pneg_distance = distance_fn(instance, sample)[0]
-            pneg_score = c * pneg_loss + gamma * pneg_distance
-            pneg_scores.append(pneg_score)
+            contrast_loss = self.contrast_loss_fn(sample, class_label, predict_fn, kappa)
+            contrast_distance = distance_fn(instance, sample)[0]
+            contrast_score = c * contrast_loss + gamma * contrast_distance
+            contrast_scores.append(contrast_score)
 
-        ppos_instance_idx = np.argmin(ppos_scores[1:], axis=0) + 1
-        pneg_instance_idx = np.argmin(pneg_scores[1:], axis=0) + 1
-        ppos_instance = samples[ppos_instance_idx]
-        pneg_instance = samples[pneg_instance_idx]
+        fact_instance_idx = np.argmin(fact_scores[1:], axis=0) + 1
+        contrast_instance_idx = np.argmin(contrast_scores[1:], axis=0) + 1
+        fact_instance = samples[fact_instance_idx]
+        contrast_instance = samples[contrast_instance_idx]
 
-        return ppos_instance, pneg_instance
+        return fact_instance, contrast_instance
 
     def perturbation(self, 
                      instance, 
@@ -105,7 +105,7 @@ class EBCI(object):
                                                                     metric=distance_metric).ravel()
         return lambda_fn
 
-    def ppos_loss_fn(self, 
+    def fact_loss_fn(self, 
                      sample,
                      class_label, 
                      predict_fn, 
@@ -117,7 +117,7 @@ class EBCI(object):
                 max_prediction = prediction[i]
         return max(max_prediction - prediction[class_label], -kappa)
 
-    def pneg_loss_fn(self, 
+    def contrast_loss_fn(self, 
                      sample,
                      class_label, 
                      predict_fn, 

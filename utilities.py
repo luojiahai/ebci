@@ -178,6 +178,13 @@ class Dataset(object):
     def __init__(self, adict):
         self.__dict__.update(adict)
 
+def map_array_values(array, value_map):
+    # value map must be { src : target }
+    ret = array.copy()
+    for src, target in value_map.items():
+        ret[ret == src] = target
+    return ret
+
 def load_csv_dataset(data, target_idx, delimiter=',',
                      feature_names=None, categorical_features=None,
                      features_to_use=None, feature_transformations=None,
@@ -294,6 +301,79 @@ def load_dataset(dataset_name,
                  balance=False, 
                  discretize=True, 
                  dataset_folder='./data'):
+    if dataset_name == 'adult':
+        feature_names = ["Age", "Workclass", "fnlwgt", "Education",
+                         "Education-Num", "Marital Status", "Occupation",
+                         "Relationship", "Race", "Sex", "Capital Gain",
+                         "Capital Loss", "Hours per week", "Country", 'Income']
+        features_to_use = [0, 1, 3, 5, 6, 7, 8, 9, 10, 11, 12, 13]
+        categorical_features = [1, 3, 5, 6, 7, 8, 9, 10, 11, 13]
+        education_map = {
+            '10th': 'Dropout', '11th': 'Dropout', '12th': 'Dropout', '1st-4th':
+            'Dropout', '5th-6th': 'Dropout', '7th-8th': 'Dropout', '9th':
+            'Dropout', 'Preschool': 'Dropout', 'HS-grad': 'High School grad',
+            'Some-college': 'High School grad', 'Masters': 'Masters',
+            'Prof-school': 'Prof-School', 'Assoc-acdm': 'Associates',
+            'Assoc-voc': 'Associates',
+        }
+        occupation_map = {
+            "Adm-clerical": "Admin", "Armed-Forces": "Military",
+            "Craft-repair": "Blue-Collar", "Exec-managerial": "White-Collar",
+            "Farming-fishing": "Blue-Collar", "Handlers-cleaners":
+            "Blue-Collar", "Machine-op-inspct": "Blue-Collar", "Other-service":
+            "Service", "Priv-house-serv": "Service", "Prof-specialty":
+            "Professional", "Protective-serv": "Other", "Sales":
+            "Sales", "Tech-support": "Other", "Transport-moving":
+            "Blue-Collar",
+        }
+        country_map = {
+            'Cambodia': 'SE-Asia', 'Canada': 'British-Commonwealth', 'China':
+            'China', 'Columbia': 'South-America', 'Cuba': 'Other',
+            'Dominican-Republic': 'Latin-America', 'Ecuador': 'South-America',
+            'El-Salvador': 'South-America', 'England': 'British-Commonwealth',
+            'France': 'Euro_1', 'Germany': 'Euro_1', 'Greece': 'Euro_2',
+            'Guatemala': 'Latin-America', 'Haiti': 'Latin-America',
+            'Holand-Netherlands': 'Euro_1', 'Honduras': 'Latin-America',
+            'Hong': 'China', 'Hungary': 'Euro_2', 'India':
+            'British-Commonwealth', 'Iran': 'Other', 'Ireland':
+            'British-Commonwealth', 'Italy': 'Euro_1', 'Jamaica':
+            'Latin-America', 'Japan': 'Other', 'Laos': 'SE-Asia', 'Mexico':
+            'Latin-America', 'Nicaragua': 'Latin-America',
+            'Outlying-US(Guam-USVI-etc)': 'Latin-America', 'Peru':
+            'South-America', 'Philippines': 'SE-Asia', 'Poland': 'Euro_2',
+            'Portugal': 'Euro_2', 'Puerto-Rico': 'Latin-America', 'Scotland':
+            'British-Commonwealth', 'South': 'Euro_2', 'Taiwan': 'China',
+            'Thailand': 'SE-Asia', 'Trinadad&Tobago': 'Latin-America',
+            'United-States': 'United-States', 'Vietnam': 'SE-Asia'
+        }
+        married_map = {
+            'Never-married': 'Never-Married', 'Married-AF-spouse': 'Married',
+            'Married-civ-spouse': 'Married', 'Married-spouse-absent':
+            'Separated', 'Separated': 'Separated', 'Divorced':
+            'Separated', 'Widowed': 'Widowed'
+        }
+        label_map = {'<=50K': 'Less than $50,000', '>50K': 'More than $50,000'}
+
+        def cap_gains_fn(x):
+            x = x.astype(float)
+            d = np.digitize(x, [0, np.median(x[x > 0]), float('inf')],
+                            right=True).astype('|S128')
+            return map_array_values(d, {'0': 'None', '1': 'Low', '2': 'High'})
+
+        transformations = {
+            3: lambda x: map_array_values(x, education_map),
+            5: lambda x: map_array_values(x, married_map),
+            6: lambda x: map_array_values(x, occupation_map),
+            10: cap_gains_fn,
+            11: cap_gains_fn,
+            13: lambda x: map_array_values(x, country_map),
+            14: lambda x: map_array_values(x, label_map),
+        }
+        dataset = load_csv_dataset(
+            os.path.join(dataset_folder, 'adult/adult.data'), -1, ', ',
+            feature_names=feature_names, features_to_use=features_to_use,
+            categorical_features=categorical_features, discretize=discretize,
+            balance=balance, feature_transformations=transformations)
     if (dataset_name == 'loan'):
         def filter_fn(data):
                 to_remove = ['Does not meet the credit policy. Status:Charged Off',
