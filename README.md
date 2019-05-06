@@ -1,1 +1,1 @@
-# ebci
+# Exemplary Contrastive Interpretability (ECI)

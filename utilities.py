@@ -6,6 +6,7 @@ import sklearn.preprocessing
 import sklearn.tree
 from sklearn.utils import check_random_state
 from abc import ABCMeta, abstractmethod
+import pprint
 
 
 class BaseDiscretizer():
@@ -173,6 +174,20 @@ class EntropyDiscretizer(BaseDiscretizer):
 
         return bins
 
+class Debug(object):
+    def __init__(self):
+        pass
+
+    @staticmethod
+    def log(contents, pformat=False):
+        f = open('log.txt', 'a')
+        for content in contents:
+            if (pformat):
+                f.write(pprint.pformat(content))
+            else:
+                f.write(str(content))
+            f.write('\n')
+        f.close()
 
 class Dataset(object):
     def __init__(self, adict):

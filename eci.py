@@ -5,7 +5,7 @@ import sklearn.utils
 import collections
 
 
-class EBCI(object):
+class ECI(object):
     def __init__(self,
                  training_data,
                  feature_names=None,
@@ -118,10 +118,10 @@ class EBCI(object):
         return max(max_prediction - prediction[class_label], -kappa)
 
     def contrast_loss_fn(self, 
-                     sample,
-                     class_label, 
-                     predict_fn, 
-                     kappa):
+                         sample,
+                         class_label, 
+                         predict_fn, 
+                         kappa):
         prediction = predict_fn([sample])[0]
         max_prediction = -1
         for i in range(len(prediction)):
