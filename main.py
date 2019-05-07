@@ -16,18 +16,22 @@ def tabular_driver(dataset, gamma):
                           categorical_features=dataset.categorical_features,
                           categorical_names=dataset.categorical_names)
     instance = dataset.validation[0]
-    class_label = clf.predict([instance])[0]
     fact, contrast = interpreter.interpret(instance=instance, 
-                                           class_label=class_label, 
+                                           class_label=clf.predict([instance])[0], 
                                            predict_fn=clf.predict_proba,
                                            c=1, gamma=gamma, kappa=1)
-    results = [
-        f"instance {instance} class {class_label} predict proba {clf.predict_proba([instance])[0]}",
-        f"fact {fact} class {clf.predict([fact])[0]} predict proba {clf.predict_proba([fact])[0]}",
-        f"contrast {contrast} class {clf.predict([contrast])[0]} predict proba {clf.predict_proba([contrast])[0]}",
-        '\n'
-    ]
-    utilities.Debug.log(contents=results)
+
+    for k, v in {'subject': instance, 'fact': fact, 'contrast': contrast}.items():
+        class_label = clf.predict([v])[0]
+        predict_proba = clf.predict_proba([v])[0]
+        contents = [f"{k} feature_values {v} class_label {class_label} predict_proba {predict_proba}"]
+        contents.append(f"prediction: {dataset.class_names[clf.predict([v])[0]]}")
+        for i in range(len(v)):
+            feature_name = dataset.feature_names[i]
+            value = int(v[i])
+            categorical_name = dataset.categorical_names[i][value]
+            contents.append(f"\t{feature_name}: {categorical_name}")
+        utilities.Debug.log(contents=contents)
 
 def main():
     print("Hello, World!")
@@ -38,9 +42,9 @@ def main():
     dataset = utilities.load_dataset('adult')
     utilities.Debug.log(contents=[dataset.class_names, 
                                   dataset.feature_names, 
-                                  dataset.categorical_names,
-                                  '\n'],
+                                  dataset.categorical_names],
                         pformat=True)
+    utilities.Debug.log(contents=['\n'])
     tabular_driver(dataset, 0.7)
     
 

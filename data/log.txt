@@ -49,9 +49,47 @@
        b'Philippines', b'Poland', b'Portugal', b'Puerto-Rico',
        b'Scotland', b'South', b'Taiwan', b'Thailand', b'Trinadad&Tobago',
        b'United-States', b'Vietnam', b'Yugoslavia'], dtype='|S128')}
-'\n'
-instance [ 1.  6.  9.  2. 10.  0.  4.  1.  0.  0.  0. 39.] class 0 predict proba [0.72293659 0.27706341]
-fact [ 0.  6.  9.  2.  8.  1.  4.  1.  0.  0.  0. 39.] class 0 predict proba [0.92940958 0.07059042]
-contrast [ 1.  4.  9.  2. 10.  0.  4.  1.  1.  0.  0. 39.] class 1 predict proba [0.15591231 0.84408769]
 
 
+subject feature_values [ 1.  6.  9.  2. 10.  0.  4.  1.  0.  0.  0. 39.] class_label 0 predict_proba [0.72293659 0.27706341]
+prediction: b'<=50K'
+	Age: 28.00 < Age <= 37.00
+	Workclass: b'Self-emp-not-inc'
+	Education: b'Bachelors'
+	Marital Status: b'Married-civ-spouse'
+	Occupation: b'Prof-specialty'
+	Relationship: b'Husband'
+	Race: b'White'
+	Sex: b'Male'
+	Capital Gain: b'0'
+	Capital Loss: b'0'
+	Hours per week: Hours per week <= 40.00
+	Country: b'United-States'
+fact feature_values [ 0.  6.  9.  2.  8.  1.  4.  1.  0.  0.  0. 39.] class_label 0 predict_proba [0.92940958 0.07059042]
+prediction: b'<=50K'
+	Age: Age <= 28.00
+	Workclass: b'Self-emp-not-inc'
+	Education: b'Bachelors'
+	Marital Status: b'Married-civ-spouse'
+	Occupation: b'Other-service'
+	Relationship: b'Not-in-family'
+	Race: b'White'
+	Sex: b'Male'
+	Capital Gain: b'0'
+	Capital Loss: b'0'
+	Hours per week: Hours per week <= 40.00
+	Country: b'United-States'
+contrast feature_values [ 1.  4.  9.  2. 10.  0.  4.  1.  1.  0.  0. 39.] class_label 1 predict_proba [0.15591231 0.84408769]
+prediction: b'>50K'
+	Age: 28.00 < Age <= 37.00
+	Workclass: b'Private'
+	Education: b'Bachelors'
+	Marital Status: b'Married-civ-spouse'
+	Occupation: b'Prof-specialty'
+	Relationship: b'Husband'
+	Race: b'White'
+	Sex: b'Male'
+	Capital Gain: b'1'
+	Capital Loss: b'0'
+	Hours per week: Hours per week <= 40.00
+	Country: b'United-States'
