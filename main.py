@@ -15,23 +15,27 @@ def tabular_driver(dataset, gamma):
                           feature_names=dataset.feature_names,
                           categorical_features=dataset.categorical_features,
                           categorical_names=dataset.categorical_names)
-    instance = dataset.validation[0]
-    fact, contrast = interpreter.interpret(instance=instance, 
-                                           class_label=clf.predict([instance])[0], 
-                                           predict_fn=clf.predict_proba,
-                                           c=1, gamma=gamma, kappa=1)
 
-    for k, v in {'subject': instance, 'fact': fact, 'contrast': contrast}.items():
-        class_label = clf.predict([v])[0]
-        predict_proba = clf.predict_proba([v])[0]
-        contents = [f"{k} feature_values {v} class_label {class_label} predict_proba {predict_proba}"]
-        contents.append(f"prediction: {dataset.class_names[clf.predict([v])[0]]}")
-        for i in range(len(v)):
-            feature_name = dataset.feature_names[i]
-            value = int(v[i])
-            categorical_name = dataset.categorical_names[i][value]
-            contents.append(f"\t{feature_name}: {categorical_name}")
-        utilities.Debug.log(contents=contents)
+    for i in range(10):
+        instance = dataset.validation[0]
+        fact, contrast = interpreter.interpret(instance=instance, 
+                                            class_label=clf.predict([instance])[0], 
+                                            predict_fn=clf.predict_proba,
+                                            c=1, gamma=gamma, kappa=1)
+
+        for k, v in {'subject': instance, 'fact': fact, 'contrast': contrast}.items():
+            class_label = clf.predict([v])[0]
+            predict_proba = clf.predict_proba([v])[0]
+            contents = [f"{k} feature_values {v} class_label {class_label} predict_proba {predict_proba}"]
+            contents.append(f"prediction: {dataset.class_names[clf.predict([v])[0]]}")
+            for i in range(len(v)):
+                feature_name = dataset.feature_names[i]
+                value = int(v[i])
+                categorical_name = dataset.categorical_names[i][value]
+                contents.append(f"\t{feature_name}: {categorical_name}")
+            utilities.Debug.log(contents=contents)
+            
+        utilities.Debug.log(contents=['\n'])
 
 def main():
     print("Hello, World!")

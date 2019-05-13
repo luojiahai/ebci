@@ -1,0 +1,429 @@
+[b'<=50K', b'>50K']
+['Age',
+ 'Workclass',
+ 'Education',
+ 'Marital Status',
+ 'Occupation',
+ 'Relationship',
+ 'Race',
+ 'Sex',
+ 'Hours per week',
+ 'Country']
+{0: ['Age <= 28.00',
+     '28.00 < Age <= 37.00',
+     '37.00 < Age <= 48.00',
+     'Age > 48.00'],
+ 1: array([b'?', b'Federal-gov', b'Local-gov', b'Never-worked', b'Private',
+       b'Self-emp-inc', b'Self-emp-not-inc', b'State-gov', b'Without-pay'],
+      dtype='|S128'),
+ 2: array([b'10th', b'11th', b'12th', b'1st-4th', b'5th-6th', b'7th-8th',
+       b'9th', b'Assoc-acdm', b'Assoc-voc', b'Bachelors', b'Doctorate',
+       b'HS-grad', b'Masters', b'Preschool', b'Prof-school',
+       b'Some-college'], dtype='|S128'),
+ 3: array([b'Divorced', b'Married-AF-spouse', b'Married-civ-spouse',
+       b'Married-spouse-absent', b'Never-married', b'Separated',
+       b'Widowed'], dtype='|S128'),
+ 4: array([b'?', b'Adm-clerical', b'Armed-Forces', b'Craft-repair',
+       b'Exec-managerial', b'Farming-fishing', b'Handlers-cleaners',
+       b'Machine-op-inspct', b'Other-service', b'Priv-house-serv',
+       b'Prof-specialty', b'Protective-serv', b'Sales', b'Tech-support',
+       b'Transport-moving'], dtype='|S128'),
+ 5: array([b'Husband', b'Not-in-family', b'Other-relative', b'Own-child',
+       b'Unmarried', b'Wife'], dtype='|S128'),
+ 6: array([b'Amer-Indian-Eskimo', b'Asian-Pac-Islander', b'Black', b'Other',
+       b'White'], dtype='|S128'),
+ 7: array([b'Female', b'Male'], dtype='|S128'),
+ 8: ['Hours per week <= 40.00',
+     '40.00 < Hours per week <= 45.00',
+     'Hours per week > 45.00'],
+ 9: array([b'?', b'Cambodia', b'Canada', b'China', b'Columbia', b'Cuba',
+       b'Dominican-Republic', b'Ecuador', b'El-Salvador', b'England',
+       b'France', b'Germany', b'Greece', b'Guatemala', b'Haiti',
+       b'Holand-Netherlands', b'Honduras', b'Hong', b'Hungary', b'India',
+       b'Iran', b'Ireland', b'Italy', b'Jamaica', b'Japan', b'Laos',
+       b'Mexico', b'Nicaragua', b'Outlying-US(Guam-USVI-etc)', b'Peru',
+       b'Philippines', b'Poland', b'Portugal', b'Puerto-Rico',
+       b'Scotland', b'South', b'Taiwan', b'Thailand', b'Trinadad&Tobago',
+       b'United-States', b'Vietnam', b'Yugoslavia'], dtype='|S128')}
+
+
+subject feature_values [ 1.  6.  9.  2. 10.  0.  4.  1.  0. 39.] class_label 0 predict_proba [0.62303676 0.37696324]
+prediction: b'<=50K'
+	Age: 28.00 < Age <= 37.00
+	Workclass: b'Self-emp-not-inc'
+	Education: b'Bachelors'
+	Marital Status: b'Married-civ-spouse'
+	Occupation: b'Prof-specialty'
+	Relationship: b'Husband'
+	Race: b'White'
+	Sex: b'Male'
+	Hours per week: Hours per week <= 40.00
+	Country: b'United-States'
+fact feature_values [ 0.  6.  9.  2. 10.  0.  4.  1.  0. 39.] class_label 0 predict_proba [0.76984381 0.23015619]
+prediction: b'<=50K'
+	Age: Age <= 28.00
+	Workclass: b'Self-emp-not-inc'
+	Education: b'Bachelors'
+	Marital Status: b'Married-civ-spouse'
+	Occupation: b'Prof-specialty'
+	Relationship: b'Husband'
+	Race: b'White'
+	Sex: b'Male'
+	Hours per week: Hours per week <= 40.00
+	Country: b'United-States'
+contrast feature_values [ 2.  5. 10.  2. 10.  0.  4.  1.  2. 39.] class_label 1 predict_proba [0.11808081 0.88191919]
+prediction: b'>50K'
+	Age: 37.00 < Age <= 48.00
+	Workclass: b'Self-emp-inc'
+	Education: b'Doctorate'
+	Marital Status: b'Married-civ-spouse'
+	Occupation: b'Prof-specialty'
+	Relationship: b'Husband'
+	Race: b'White'
+	Sex: b'Male'
+	Hours per week: Hours per week > 45.00
+	Country: b'United-States'
+
+
+subject feature_values [ 1.  6.  9.  2. 10.  0.  4.  1.  0. 39.] class_label 0 predict_proba [0.62303676 0.37696324]
+prediction: b'<=50K'
+	Age: 28.00 < Age <= 37.00
+	Workclass: b'Self-emp-not-inc'
+	Education: b'Bachelors'
+	Marital Status: b'Married-civ-spouse'
+	Occupation: b'Prof-specialty'
+	Relationship: b'Husband'
+	Race: b'White'
+	Sex: b'Male'
+	Hours per week: Hours per week <= 40.00
+	Country: b'United-States'
+fact feature_values [ 1.  6.  9.  4. 10.  0.  4.  1.  0. 39.] class_label 0 predict_proba [0.72750117 0.27249883]
+prediction: b'<=50K'
+	Age: 28.00 < Age <= 37.00
+	Workclass: b'Self-emp-not-inc'
+	Education: b'Bachelors'
+	Marital Status: b'Never-married'
+	Occupation: b'Prof-specialty'
+	Relationship: b'Husband'
+	Race: b'White'
+	Sex: b'Male'
+	Hours per week: Hours per week <= 40.00
+	Country: b'United-States'
+contrast feature_values [ 3.  6.  9.  2. 11.  0.  4.  1.  2. 39.] class_label 1 predict_proba [0.12205458 0.87794542]
+prediction: b'>50K'
+	Age: Age > 48.00
+	Workclass: b'Self-emp-not-inc'
+	Education: b'Bachelors'
+	Marital Status: b'Married-civ-spouse'
+	Occupation: b'Protective-serv'
+	Relationship: b'Husband'
+	Race: b'White'
+	Sex: b'Male'
+	Hours per week: Hours per week > 45.00
+	Country: b'United-States'
+
+
+subject feature_values [ 1.  6.  9.  2. 10.  0.  4.  1.  0. 39.] class_label 0 predict_proba [0.62303676 0.37696324]
+prediction: b'<=50K'
+	Age: 28.00 < Age <= 37.00
+	Workclass: b'Self-emp-not-inc'
+	Education: b'Bachelors'
+	Marital Status: b'Married-civ-spouse'
+	Occupation: b'Prof-specialty'
+	Relationship: b'Husband'
+	Race: b'White'
+	Sex: b'Male'
+	Hours per week: Hours per week <= 40.00
+	Country: b'United-States'
+fact feature_values [ 0.  7.  9.  2. 10.  0.  4.  0.  0. 39.] class_label 0 predict_proba [0.82821739 0.17178261]
+prediction: b'<=50K'
+	Age: Age <= 28.00
+	Workclass: b'State-gov'
+	Education: b'Bachelors'
+	Marital Status: b'Married-civ-spouse'
+	Occupation: b'Prof-specialty'
+	Relationship: b'Husband'
+	Race: b'White'
+	Sex: b'Female'
+	Hours per week: Hours per week <= 40.00
+	Country: b'United-States'
+contrast feature_values [ 2.  6.  9.  2. 10.  0.  4.  1.  0. 39.] class_label 0 predict_proba [0.51760781 0.48239219]
+prediction: b'<=50K'
+	Age: 37.00 < Age <= 48.00
+	Workclass: b'Self-emp-not-inc'
+	Education: b'Bachelors'
+	Marital Status: b'Married-civ-spouse'
+	Occupation: b'Prof-specialty'
+	Relationship: b'Husband'
+	Race: b'White'
+	Sex: b'Male'
+	Hours per week: Hours per week <= 40.00
+	Country: b'United-States'
+
+
+subject feature_values [ 1.  6.  9.  2. 10.  0.  4.  1.  0. 39.] class_label 0 predict_proba [0.62303676 0.37696324]
+prediction: b'<=50K'
+	Age: 28.00 < Age <= 37.00
+	Workclass: b'Self-emp-not-inc'
+	Education: b'Bachelors'
+	Marital Status: b'Married-civ-spouse'
+	Occupation: b'Prof-specialty'
+	Relationship: b'Husband'
+	Race: b'White'
+	Sex: b'Male'
+	Hours per week: Hours per week <= 40.00
+	Country: b'United-States'
+fact feature_values [ 0.  7.  8.  2. 10.  0.  4.  0.  0. 39.] class_label 0 predict_proba [0.82192244 0.17807756]
+prediction: b'<=50K'
+	Age: Age <= 28.00
+	Workclass: b'State-gov'
+	Education: b'Assoc-voc'
+	Marital Status: b'Married-civ-spouse'
+	Occupation: b'Prof-specialty'
+	Relationship: b'Husband'
+	Race: b'White'
+	Sex: b'Female'
+	Hours per week: Hours per week <= 40.00
+	Country: b'United-States'
+contrast feature_values [ 1.  4.  9.  2. 10.  0.  4.  1.  2. 39.] class_label 1 predict_proba [0.2148277 0.7851723]
+prediction: b'>50K'
+	Age: 28.00 < Age <= 37.00
+	Workclass: b'Private'
+	Education: b'Bachelors'
+	Marital Status: b'Married-civ-spouse'
+	Occupation: b'Prof-specialty'
+	Relationship: b'Husband'
+	Race: b'White'
+	Sex: b'Male'
+	Hours per week: Hours per week > 45.00
+	Country: b'United-States'
+
+
+subject feature_values [ 1.  6.  9.  2. 10.  0.  4.  1.  0. 39.] class_label 0 predict_proba [0.62303676 0.37696324]
+prediction: b'<=50K'
+	Age: 28.00 < Age <= 37.00
+	Workclass: b'Self-emp-not-inc'
+	Education: b'Bachelors'
+	Marital Status: b'Married-civ-spouse'
+	Occupation: b'Prof-specialty'
+	Relationship: b'Husband'
+	Race: b'White'
+	Sex: b'Male'
+	Hours per week: Hours per week <= 40.00
+	Country: b'United-States'
+fact feature_values [ 1.  6.  9.  3. 10.  1.  4.  1.  0. 39.] class_label 0 predict_proba [0.81154971 0.18845029]
+prediction: b'<=50K'
+	Age: 28.00 < Age <= 37.00
+	Workclass: b'Self-emp-not-inc'
+	Education: b'Bachelors'
+	Marital Status: b'Married-spouse-absent'
+	Occupation: b'Prof-specialty'
+	Relationship: b'Not-in-family'
+	Race: b'White'
+	Sex: b'Male'
+	Hours per week: Hours per week <= 40.00
+	Country: b'United-States'
+contrast feature_values [ 2.  4. 10.  2. 10.  0.  4.  1.  1. 39.] class_label 1 predict_proba [0.21785943 0.78214057]
+prediction: b'>50K'
+	Age: 37.00 < Age <= 48.00
+	Workclass: b'Private'
+	Education: b'Doctorate'
+	Marital Status: b'Married-civ-spouse'
+	Occupation: b'Prof-specialty'
+	Relationship: b'Husband'
+	Race: b'White'
+	Sex: b'Male'
+	Hours per week: 40.00 < Hours per week <= 45.00
+	Country: b'United-States'
+
+
+subject feature_values [ 1.  6.  9.  2. 10.  0.  4.  1.  0. 39.] class_label 0 predict_proba [0.62303676 0.37696324]
+prediction: b'<=50K'
+	Age: 28.00 < Age <= 37.00
+	Workclass: b'Self-emp-not-inc'
+	Education: b'Bachelors'
+	Marital Status: b'Married-civ-spouse'
+	Occupation: b'Prof-specialty'
+	Relationship: b'Husband'
+	Race: b'White'
+	Sex: b'Male'
+	Hours per week: Hours per week <= 40.00
+	Country: b'United-States'
+fact feature_values [ 0.  6.  9.  2. 10.  0.  4.  1.  0. 39.] class_label 0 predict_proba [0.76984381 0.23015619]
+prediction: b'<=50K'
+	Age: Age <= 28.00
+	Workclass: b'Self-emp-not-inc'
+	Education: b'Bachelors'
+	Marital Status: b'Married-civ-spouse'
+	Occupation: b'Prof-specialty'
+	Relationship: b'Husband'
+	Race: b'White'
+	Sex: b'Male'
+	Hours per week: Hours per week <= 40.00
+	Country: b'United-States'
+contrast feature_values [ 0.  6.  9.  2. 10.  0.  4.  1.  0. 39.] class_label 0 predict_proba [0.76984381 0.23015619]
+prediction: b'<=50K'
+	Age: Age <= 28.00
+	Workclass: b'Self-emp-not-inc'
+	Education: b'Bachelors'
+	Marital Status: b'Married-civ-spouse'
+	Occupation: b'Prof-specialty'
+	Relationship: b'Husband'
+	Race: b'White'
+	Sex: b'Male'
+	Hours per week: Hours per week <= 40.00
+	Country: b'United-States'
+
+
+subject feature_values [ 1.  6.  9.  2. 10.  0.  4.  1.  0. 39.] class_label 0 predict_proba [0.62303676 0.37696324]
+prediction: b'<=50K'
+	Age: 28.00 < Age <= 37.00
+	Workclass: b'Self-emp-not-inc'
+	Education: b'Bachelors'
+	Marital Status: b'Married-civ-spouse'
+	Occupation: b'Prof-specialty'
+	Relationship: b'Husband'
+	Race: b'White'
+	Sex: b'Male'
+	Hours per week: Hours per week <= 40.00
+	Country: b'United-States'
+fact feature_values [ 0.  5.  9.  3. 10.  1.  4.  1.  0. 39.] class_label 0 predict_proba [0.8897389 0.1102611]
+prediction: b'<=50K'
+	Age: Age <= 28.00
+	Workclass: b'Self-emp-inc'
+	Education: b'Bachelors'
+	Marital Status: b'Married-spouse-absent'
+	Occupation: b'Prof-specialty'
+	Relationship: b'Not-in-family'
+	Race: b'White'
+	Sex: b'Male'
+	Hours per week: Hours per week <= 40.00
+	Country: b'United-States'
+contrast feature_values [ 2.  6.  9.  2. 10.  0.  4.  0.  1. 39.] class_label 1 predict_proba [0.41766445 0.58233555]
+prediction: b'>50K'
+	Age: 37.00 < Age <= 48.00
+	Workclass: b'Self-emp-not-inc'
+	Education: b'Bachelors'
+	Marital Status: b'Married-civ-spouse'
+	Occupation: b'Prof-specialty'
+	Relationship: b'Husband'
+	Race: b'White'
+	Sex: b'Female'
+	Hours per week: 40.00 < Hours per week <= 45.00
+	Country: b'United-States'
+
+
+subject feature_values [ 1.  6.  9.  2. 10.  0.  4.  1.  0. 39.] class_label 0 predict_proba [0.62303676 0.37696324]
+prediction: b'<=50K'
+	Age: 28.00 < Age <= 37.00
+	Workclass: b'Self-emp-not-inc'
+	Education: b'Bachelors'
+	Marital Status: b'Married-civ-spouse'
+	Occupation: b'Prof-specialty'
+	Relationship: b'Husband'
+	Race: b'White'
+	Sex: b'Male'
+	Hours per week: Hours per week <= 40.00
+	Country: b'United-States'
+fact feature_values [ 1.  6.  9.  2.  9.  1.  4.  1.  0. 39.] class_label 0 predict_proba [0.84837631 0.15162369]
+prediction: b'<=50K'
+	Age: 28.00 < Age <= 37.00
+	Workclass: b'Self-emp-not-inc'
+	Education: b'Bachelors'
+	Marital Status: b'Married-civ-spouse'
+	Occupation: b'Priv-house-serv'
+	Relationship: b'Not-in-family'
+	Race: b'White'
+	Sex: b'Male'
+	Hours per week: Hours per week <= 40.00
+	Country: b'United-States'
+contrast feature_values [ 2.  6.  9.  2. 10.  0.  4.  1.  0. 39.] class_label 0 predict_proba [0.51760781 0.48239219]
+prediction: b'<=50K'
+	Age: 37.00 < Age <= 48.00
+	Workclass: b'Self-emp-not-inc'
+	Education: b'Bachelors'
+	Marital Status: b'Married-civ-spouse'
+	Occupation: b'Prof-specialty'
+	Relationship: b'Husband'
+	Race: b'White'
+	Sex: b'Male'
+	Hours per week: Hours per week <= 40.00
+	Country: b'United-States'
+
+
+subject feature_values [ 1.  6.  9.  2. 10.  0.  4.  1.  0. 39.] class_label 0 predict_proba [0.62303676 0.37696324]
+prediction: b'<=50K'
+	Age: 28.00 < Age <= 37.00
+	Workclass: b'Self-emp-not-inc'
+	Education: b'Bachelors'
+	Marital Status: b'Married-civ-spouse'
+	Occupation: b'Prof-specialty'
+	Relationship: b'Husband'
+	Race: b'White'
+	Sex: b'Male'
+	Hours per week: Hours per week <= 40.00
+	Country: b'United-States'
+fact feature_values [ 0.  6.  9.  3. 10.  0.  4.  1.  0. 39.] class_label 0 predict_proba [0.78750536 0.21249464]
+prediction: b'<=50K'
+	Age: Age <= 28.00
+	Workclass: b'Self-emp-not-inc'
+	Education: b'Bachelors'
+	Marital Status: b'Married-spouse-absent'
+	Occupation: b'Prof-specialty'
+	Relationship: b'Husband'
+	Race: b'White'
+	Sex: b'Male'
+	Hours per week: Hours per week <= 40.00
+	Country: b'United-States'
+contrast feature_values [ 1.  7.  9.  2. 10.  0.  4.  1.  1. 39.] class_label 1 predict_proba [0.43542713 0.56457287]
+prediction: b'>50K'
+	Age: 28.00 < Age <= 37.00
+	Workclass: b'State-gov'
+	Education: b'Bachelors'
+	Marital Status: b'Married-civ-spouse'
+	Occupation: b'Prof-specialty'
+	Relationship: b'Husband'
+	Race: b'White'
+	Sex: b'Male'
+	Hours per week: 40.00 < Hours per week <= 45.00
+	Country: b'United-States'
+
+
+subject feature_values [ 1.  6.  9.  2. 10.  0.  4.  1.  0. 39.] class_label 0 predict_proba [0.62303676 0.37696324]
+prediction: b'<=50K'
+	Age: 28.00 < Age <= 37.00
+	Workclass: b'Self-emp-not-inc'
+	Education: b'Bachelors'
+	Marital Status: b'Married-civ-spouse'
+	Occupation: b'Prof-specialty'
+	Relationship: b'Husband'
+	Race: b'White'
+	Sex: b'Male'
+	Hours per week: Hours per week <= 40.00
+	Country: b'United-States'
+fact feature_values [ 0.  6.  9.  0. 10.  1.  4.  0.  0. 39.] class_label 0 predict_proba [0.94429058 0.05570942]
+prediction: b'<=50K'
+	Age: Age <= 28.00
+	Workclass: b'Self-emp-not-inc'
+	Education: b'Bachelors'
+	Marital Status: b'Divorced'
+	Occupation: b'Prof-specialty'
+	Relationship: b'Not-in-family'
+	Race: b'White'
+	Sex: b'Female'
+	Hours per week: Hours per week <= 40.00
+	Country: b'United-States'
+contrast feature_values [ 1.  6.  9.  2. 12.  0.  4.  1.  0. 39.] class_label 0 predict_proba [0.59035593 0.40964407]
+prediction: b'<=50K'
+	Age: 28.00 < Age <= 37.00
+	Workclass: b'Self-emp-not-inc'
+	Education: b'Bachelors'
+	Marital Status: b'Married-civ-spouse'
+	Occupation: b'Sales'
+	Relationship: b'Husband'
+	Race: b'White'
+	Sex: b'Male'
+	Hours per week: Hours per week <= 40.00
+	Country: b'United-States'
+
+
