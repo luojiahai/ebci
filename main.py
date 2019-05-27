@@ -2,7 +2,7 @@ import numpy as np
 from sklearn import svm
 import pprint
 
-import utilities
+import util
 import eci
 
 
@@ -16,7 +16,7 @@ def tabular_driver(dataset, gamma):
                           categorical_features=dataset.categorical_features,
                           categorical_names=dataset.categorical_names)
 
-    for i in range(10):
+    for i in range(1):
         instance = dataset.validation[i]
         fact, contrast = interpreter.interpret(instance=instance, 
                                             class_label=clf.predict([instance])[0], 
@@ -35,9 +35,9 @@ def tabular_driver(dataset, gamma):
                 value = int(v[j])
                 categorical_name = dataset.categorical_names[j][value]
                 contents.append(f"\t{feature_name}: {categorical_name}")
-            utilities.Debug.log(contents=contents)
+            util.Debug.log(contents=contents)
             
-        utilities.Debug.log(contents=['\n'])
+        util.Debug.log(contents=['\n'])
 
 def main():
     print("Hello, World!")
@@ -45,12 +45,12 @@ def main():
     # reset log
     open('log.txt', 'w').close()
 
-    dataset = utilities.load_dataset('adult')
-    utilities.Debug.log(contents=[dataset.class_names, 
+    dataset = util.load_dataset('adult')
+    util.Debug.log(contents=[dataset.class_names, 
                                   dataset.feature_names, 
                                   dataset.categorical_names],
                         pformat=True)
-    utilities.Debug.log(contents=['\n'])
+    util.Debug.log(contents=['\n'])
     tabular_driver(dataset, 0.5)
     
 

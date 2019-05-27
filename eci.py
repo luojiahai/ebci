@@ -44,6 +44,12 @@ class ECI(object):
                   perturbation_size=5000, 
                   c=1, gamma=1, kappa=1):
         samples = self.perturbation(instance, perturbation_size)
+
+        f = open('samples.txt', 'w')
+        for sample in samples:
+            f.write(','.join([str(int(e)) for e in sample]))
+            f.write('\n')
+
         distance_fn = self.pairwise_distance(distance_metric)
         fact_scores = list()
         contrast_scores = list()
