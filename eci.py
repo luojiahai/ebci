@@ -45,10 +45,15 @@ class ECI(object):
                   c=1, gamma=1, kappa=1):
         samples = self.perturbation(instance, perturbation_size)
 
-        f = open('samples.txt', 'w')
-        for sample in samples:
-            f.write(','.join([str(int(e)) for e in sample]))
-            f.write('\n')
+        # f = open('samples.txt', 'w')
+        # for sample in samples:
+        #     f.write(','.join([str(int(e)) for e in sample]))
+        #     # pred_proba = predict_fn([sample])[0]
+        #     # pred = '1'
+        #     # if pred_proba[0] > pred_proba[1]:
+        #     #     pred = '0'
+        #     # f.write(',' + pred)
+        #     f.write('\n')
 
         distance_fn = self.pairwise_distance(distance_metric)
         fact_scores = list()
