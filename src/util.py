@@ -175,12 +175,22 @@ class EntropyDiscretizer(BaseDiscretizer):
         return bins
 
 class Debug(object):
+    path = None
+
     def __init__(self):
         pass
 
     @staticmethod
+    def init(path):
+        open(path, 'w').close()
+        Debug.path = path
+
+    @staticmethod
     def log(contents, pformat=False):
-        f = open('log.txt', 'a')
+        if (not Debug.path):
+            # please initialize debug module with init(path)
+            return
+        f = open(Debug.path, 'a')
         for content in contents:
             if (pformat):
                 f.write(pprint.pformat(content))

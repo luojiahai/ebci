@@ -45,7 +45,7 @@ class ECI(object):
                   c=1, gamma=1, kappa=1):
         samples = self.perturbation(instance, perturbation_size)
 
-        # f = open('samples.txt', 'w')
+        # f = open('../temp/samples.txt', 'w')
         # for sample in samples:
         #     f.write(','.join([str(int(e)) for e in sample]))
         #     # pred_proba = predict_fn([sample])[0]

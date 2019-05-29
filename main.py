@@ -2,8 +2,8 @@ import numpy as np
 from sklearn import svm
 import pprint
 
-import util
-import eci
+import src.util as util
+import src.eci as eci
 
 
 def get_instances(path):
@@ -24,7 +24,7 @@ def tabular_driver(dataset, gamma):
                           categorical_features=dataset.categorical_features,
                           categorical_names=dataset.categorical_names)
 
-    instances = get_instances('samples.txt')
+    instances = get_instances('data/samples_00.txt')
 
     for i in range(50):
         instance = np.array(instances[i])
@@ -73,9 +73,8 @@ def tabular_driver(dataset, gamma):
 
 def main():
     print("Hello, World!")
-
-    # reset log
-    open('log.txt', 'w').close()
+    
+    util.Debug.init('temp/log.txt')
 
     dataset = util.load_dataset('adult')
     util.Debug.log(contents=[dataset.class_names, 
