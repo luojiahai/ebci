@@ -25,9 +25,8 @@ def tabular_driver(dataset, gamma):
                           categorical_names=dataset.categorical_names)
 
     instances = get_instances('data/samples_00.txt')
-
-    for i in range(50):
-        instance = np.array(instances[i])
+    for i in range(100):
+        instance = np.array(instances[i][:-1])
         fact, contrast = interpreter.interpret(instance=instance, 
                                                class_label=clf.predict([instance])[0], 
                                                predict_fn=clf.predict_proba,
@@ -54,7 +53,6 @@ def tabular_driver(dataset, gamma):
     #                                            class_label=clf.predict([instance])[0], 
     #                                            predict_fn=clf.predict_proba,
     #                                            c=1, gamma=gamma, kappa=1)
-
     #     for k, v in {'subject': instance, 'fact': fact, 'contrast': contrast}.items():
     #         class_label = clf.predict([v])[0]
     #         predict_proba = clf.predict_proba([v])[0]
@@ -68,7 +66,6 @@ def tabular_driver(dataset, gamma):
     #             categorical_name = dataset.categorical_names[j][value]
     #             contents.append(f"\t{feature_name}: {categorical_name}")
     #         util.Debug.log(contents=contents)
-            
     #     util.Debug.log(contents=['\n'])
 
 def main():
@@ -77,12 +74,17 @@ def main():
     util.Debug.init('temp/log.txt')
 
     dataset = util.load_dataset('adult')
-    util.Debug.log(contents=[dataset.class_names, 
-                                  dataset.feature_names, 
-                                  dataset.categorical_names],
-                        pformat=True)
+    contents = [
+        dataset.class_names, 
+        dataset.feature_names, 
+        dataset.categorical_names
+    ]
+    util.Debug.log(
+        contents=contents,
+        pformat=True
+    )
     util.Debug.log(contents=['\n'])
-    tabular_driver(dataset, 0.5)
+    tabular_driver(dataset, 0.34)
     
 
 if __name__ == "__main__":

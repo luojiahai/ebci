@@ -20,6 +20,7 @@ class ECI(object):
             feature_names = [str(i) for i in range(training_data.shape[1])]
         self.categorical_features = list(categorical_features)
         self.feature_names = list(feature_names)
+        self.categorical_names = categorical_names
 
         self.scaler = sklearn.preprocessing.StandardScaler(with_mean=False)
         self.scaler.fit(training_data)
@@ -44,15 +45,16 @@ class ECI(object):
                   perturbation_size=5000, 
                   c=1, gamma=1, kappa=1):
         samples = self.perturbation(instance, perturbation_size)
+        samples = self.filter_perturbed(samples)
 
-        # f = open('../temp/samples.txt', 'w')
+        # f = open('temp/samples.txt', 'w')
         # for sample in samples:
         #     f.write(','.join([str(int(e)) for e in sample]))
-        #     # pred_proba = predict_fn([sample])[0]
-        #     # pred = '1'
-        #     # if pred_proba[0] > pred_proba[1]:
-        #     #     pred = '0'
-        #     # f.write(',' + pred)
+        #     pred_proba = predict_fn([sample])[0]
+        #     pred = '1'
+        #     if pred_proba[0] > pred_proba[1]:
+        #         pred = '0'
+        #     f.write(',' + pred)
         #     f.write('\n')
 
         distance_fn = self.pairwise_distance(distance_metric)
@@ -76,6 +78,25 @@ class ECI(object):
         contrast_instance = samples[contrast_instance_idx]
 
         return fact_instance, contrast_instance
+
+    def filter_perturbed(self, samples):
+        instance = samples[0]
+        ret = [instance]
+        for sample in samples[1:]:
+            if list(sample) == list(instance):
+                continue
+            else:
+                flag = False
+                for i in range(len(sample)):
+                    value = int(sample[i])
+                    if (self.categorical_names[i][value] == '?'.encode('UTF-8')):
+                        flag = True
+                        break
+                if (flag):
+                    continue
+                else:
+                    ret.append(sample)
+        return np.array(ret)
 
     def perturbation(self, 
                      instance, 

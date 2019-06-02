@@ -331,8 +331,8 @@ def load_dataset(dataset_name,
                          "Education-Num", "Marital Status", "Occupation",
                          "Relationship", "Race", "Sex", "Capital Gain",
                          "Capital Loss", "Hours per week", "Country", 'Income']
-        features_to_use = [0, 1, 3, 5, 6, 7, 8, 9, 12, 13]
-        categorical_features = [1, 3, 5, 6, 7, 8, 9, 13]
+        features_to_use = [0, 3, 6, 9, 12, 13]
+        categorical_features = [3, 6, 9, 13]
         education_map = {
             '10th': 'Dropout', '11th': 'Dropout', '12th': 'Dropout', '1st-4th':
             'Dropout', '5th-6th': 'Dropout', '7th-8th': 'Dropout', '9th':
