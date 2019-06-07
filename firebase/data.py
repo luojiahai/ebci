@@ -25,7 +25,7 @@ dataset = json.load(dataset_file)
 db.child('adult_dataset').set(dataset)
 
 
-instances_file = open('../data/adult_instances.txt')
+instances_file = open('../data/adult_instances1.txt')
 data = json.load(instances_file)
 train = data[:len(data)//2]
 test = data[len(data)//2:]

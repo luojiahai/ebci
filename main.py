@@ -58,10 +58,10 @@ def tabular_driver(dataset, gamma):
 
         contents = [
             '{',
-            '    instance: {',
-            '        subject: ' + str(instance_vec) + ',', 
-            '        fact: ' + str(fact_vec) + ',', 
-            '        contrast: ' + str(contrast_vec),
+            '    \"instance\": {',
+            '        \"subject\": ' + str(instance_vec) + ',', 
+            '        \"fact\": ' + str(fact_vec) + ',', 
+            '        \"contrast\": ' + str(contrast_vec),
             '    }',
             '},'
         ]
@@ -109,7 +109,7 @@ def main():
     # train_and_save_model(dataset)
 
     util.Debug.log(contents=['['])
-    tabular_driver(dataset, 0.25)
+    tabular_driver(dataset, 0.34)
     util.Debug.log(contents=[']'])
     
 
