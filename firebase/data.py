@@ -25,10 +25,25 @@ dataset = json.load(dataset_file)
 db.child('adult_dataset').set(dataset)
 
 
-instances_file = open('../data/adult_instances1.txt')
+instances_file = open('../data/adult_instances.txt')
 data = json.load(instances_file)
-train = data[:len(data)//2]
-test = data[len(data)//2:]
+
+e0 = []
+e1 = []
+for e in data:
+    if (e['instance']['subject'][-1] == 0):
+        e0.append(e)
+    else:
+        e1.append(e)
+e0 = e0[:len(e1)]
+
+train_e0 = e0[:len(e0)//2]
+train_e1 = e1[:len(e1)//2]
+test_e0 = e0[len(e0)//2:]
+test_e1 = e1[len(e0)//2:]
+train = train_e0 + train_e1
+test = test_e0 + test_e1
+
 
 db.child('adult_dataset').child('train').set(train)
 db.child('adult_dataset').child('test').set(test)

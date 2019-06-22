@@ -34,9 +34,10 @@ def tabular_driver(dataset, gamma):
         categorical_features=dataset.categorical_features,
         categorical_names=dataset.categorical_names)
 
+
+    arr = [1, 9, 10, 1, 0, 39]
     instances = get_instances('data/samples.txt')
-    shuffle(instances)
-    for i in tqdm(range(1000)):
+    for i in tqdm(range(len(instances))):
         instance = np.array(instances[i][:-1])
         fact, contrast = interpreter.interpret(
             instance=instance, class_label=clf.predict([instance])[0], 
@@ -50,12 +51,10 @@ def tabular_driver(dataset, gamma):
         contrast_vec = list([int(e) for e in contrast])
         contrast_pred = clf.predict([contrast])[0]
         contrast_vec.append(contrast_pred)
-
         if ((instance_pred != fact_pred) 
             or (fact_pred == contrast_pred)
             or (instance_pred == contrast_pred)):
             continue
-
         contents = [
             '{',
             '    \"instance\": {',
@@ -71,8 +70,7 @@ def tabular_driver(dataset, gamma):
     #     instance = dataset.validation[i]
     #     fact, contrast = interpreter.interpret(
     #         instance=instance, class_label=clf.predict([instance])[0], 
-    #         predict_fn=clf.predict_proba, perturbation_size=10000, 
-    #         c=1, gamma=gamma, kappa=1)
+    #         predict_fn=clf.predict_proba, c=1, gamma=gamma, kappa=1)
     #     for k, v in {'subject': instance, 'fact': fact, 'contrast': contrast}.items():
     #         class_label = clf.predict([v])[0]
     #         predict_proba = clf.predict_proba([v])[0]
