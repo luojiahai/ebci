@@ -19,17 +19,19 @@
             "Age > 48.00"
         ],
         [
-            "10th", "11th", "12th", "1st-4th", "5th-6th", "7th-8th",
-            "9th", "Assoc-acdm", "Assoc-voc", "Bachelors", "Doctorate",
-            "HS-grad", "Masters", "Preschool", "Prof-school",
-            "Some-college"
+            "Dropout (Year 10)", "Dropout (Year 11)", "Dropout (Year 12)", 
+            "Dropout (Year 1-4)", "Dropout (Year 5-6)", "Dropout (Year 7-8)",
+            "Dropout (Year 9)", "Associates (Academic)", "Associates (Vocational)", 
+            "Bachelors", "Doctorate", "High School Graduate", "Masters", 
+            "Dropout (Preschool)", "Professional School",
+            "High School Graduate (Some college)"
         ],
         [
-            "Unknown", "Adm-clerical", "Armed-Forces", "Craft-repair",
-            "Exec-managerial", "Farming-fishing", "Handlers-cleaners",
-            "Machine-op-inspct", "Other-service", "Priv-house-serv",
-            "Prof-specialty", "Protective-serv", "Sales", "Tech-support",
-            "Transport-moving"
+            "Unknown", "Admin", "Military", "Blue Collar (Craft repair)",
+            "White Collar (Executive managerial)", "Blue Collar (Farming fishing)", 
+            "Blue Collar (Handlers cleaners)", "Blue Collar (Machine op inspct)", 
+            "Other service", "Private house service", "Professional", 
+            "Protective Service", "Sales", "Technical support", "Transport moving"
         ],
         [
             "Female", "Male"
@@ -41,14 +43,14 @@
         ],
         [
             "Unknown", "Cambodia", "Canada", "China", "Columbia", "Cuba",
-            "Dominican-Republic", "Ecuador", "El-Salvador", "England",
+            "Dominican Republic", "Ecuador", "El Salvador", "England",
             "France", "Germany", "Greece", "Guatemala", "Haiti",
-            "Holand-Netherlands", "Honduras", "Hong", "Hungary", "India",
+            "Holand Netherlands", "Honduras", "Hong", "Hungary", "India",
             "Iran", "Ireland", "Italy", "Jamaica", "Japan", "Laos",
-            "Mexico", "Nicaragua", "Outlying-US(Guam-USVI-etc)", "Peru",
-            "Philippines", "Poland", "Portugal", "Puerto-Rico",
-            "Scotland", "South", "Taiwan", "Thailand", "Trinadad&Tobago",
-            "United-States", "Vietnam", "Yugoslavia"
+            "Mexico", "Nicaragua", "Outlying US (Guam U.S. Virgin Islands etc)", 
+            "Peru", "Philippines", "Poland", "Portugal", "Puerto Rico",
+            "Scotland", "South", "Taiwan", "Thailand", "Trinadad & Tobago",
+            "United States", "Vietnam", "Yugoslavia"
         ]
     ]
 }
