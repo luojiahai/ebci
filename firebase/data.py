@@ -37,10 +37,12 @@ for e in data:
         e1.append(e)
 e0 = e0[:len(e1)]
 
-train_e0 = e0[:len(e0)//2]
-train_e1 = e1[:len(e1)//2]
-test_e0 = e0[len(e0)//2:]
-test_e1 = e1[len(e0)//2:]
+mid = 8
+
+train_e0 = e0[:mid]
+train_e1 = e1[:mid]
+test_e0 = e0[mid:]
+test_e1 = e1[mid:]
 train = train_e0 + train_e1
 test = test_e0 + test_e1
 
