@@ -1,7 +1,7 @@
 {
     "classNames": [
-            "<=50K", 
-            ">50K"
+            "<= 50K", 
+            "> 50K"
         ],
     "attributeNames": [
             "Age",
