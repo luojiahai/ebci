@@ -44,7 +44,7 @@ train_e1 = e1[:mid]
 test_e0 = e0[mid:]
 test_e1 = e1[mid:]
 train = train_e0 + train_e1
-test = test_e0 + test_e1
+test = test_e0[:mid] + test_e1[:mid]
 
 
 db.child('adult_dataset').child('train').set(train)
