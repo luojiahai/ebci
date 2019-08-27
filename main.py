@@ -34,81 +34,36 @@ def tabular_driver(dataset, gamma):
         categorical_features=dataset.categorical_features,
         categorical_names=dataset.categorical_names)
 
+    instance = dataset.test[0]
+    factual, contrastive = interpreter.interpret(
+        instance=instance, class_label=clf.predict([instance])[0], 
+        predict_fn=clf.predict_proba, c=1, gamma=gamma, kappa=1)
 
-    arr = [1, 9, 10, 1, 0, 39]
-    instances = get_instances('data/samples.txt')
-    for i in tqdm(range(len(instances))):
-        instance = np.array(instances[i][:-1])
-        fact, contrast = interpreter.interpret(
-            instance=instance, class_label=clf.predict([instance])[0], 
-            predict_fn=clf.predict_proba, c=1, gamma=gamma, kappa=1)
-        instance_vec = list(instance)
-        instance_pred = clf.predict([instance])[0]
-        instance_vec.append(instance_pred)
-        fact_vec = list([int(e) for e in fact])
-        fact_pred = clf.predict([fact])[0]
-        fact_vec.append(fact_pred)
-        contrast_vec = list([int(e) for e in contrast])
-        contrast_pred = clf.predict([contrast])[0]
-        contrast_vec.append(contrast_pred)
-        if ((instance_pred != fact_pred) 
-            or (fact_pred == contrast_pred)
-            or (instance_pred == contrast_pred)):
-            continue
-        contents = [
-            '{',
-            '    \"instance\": {',
-            '        \"subject\": ' + str(instance_vec) + ',', 
-            '        \"fact\": ' + str(fact_vec) + ',', 
-            '        \"contrast\": ' + str(contrast_vec),
-            '    }',
-            '},'
-        ]
-        util.Debug.log(contents=contents)
+    subject_vec = list(instance)
+    subject_pred = clf.predict([instance])[0]
+    subject_vec.append(subject_pred)
 
-    # for i in range(1):
-    #     instance = dataset.validation[i]
-    #     fact, contrast = interpreter.interpret(
-    #         instance=instance, class_label=clf.predict([instance])[0], 
-    #         predict_fn=clf.predict_proba, c=1, gamma=gamma, kappa=1)
-    #     for k, v in {'subject': instance, 'fact': fact, 'contrast': contrast}.items():
-    #         class_label = clf.predict([v])[0]
-    #         predict_proba = clf.predict_proba([v])[0]
-    #         values = []
-    #         for e in v: values.append(int(e))
-    #         contents = [f"{k} feature_values {str(values)} class_label {class_label} predict_proba {predict_proba}"]
-    #         contents.append(f"prediction: {dataset.class_names[clf.predict([v])[0]]}")
-    #         for j in range(len(v)):
-    #             feature_name = dataset.feature_names[j]
-    #             value = int(v[j])
-    #             categorical_name = dataset.categorical_names[j][value]
-    #             contents.append(f"\t{feature_name}: {categorical_name}")
-    #         util.Debug.log(contents=contents)
-    #     util.Debug.log(contents=['\n'])
+    factual_vec = list([int(e) for e in factual])
+    factual_pred = clf.predict([factual])[0]
+    factual_vec.append(factual_pred)
+
+    contrastive_vec = list([int(e) for e in contrastive])
+    contrastive_pred = clf.predict([contrastive])[0]
+    contrastive_vec.append(contrastive_pred)
+
+    if ((subject_pred != factual_pred) 
+        or (factual_pred == contrastive_pred)
+        or (subject_pred == contrastive_pred)):
+        print("ExplantionError: explanation not exist")
+
+    print(subject_vec, factual_vec, contrastive_vec)
+
 
 def main():
-    print("Hello, World!")
-    
-    util.Debug.init('temp/log.txt')
-
     dataset = util.load_dataset('adult')
-
-    # contents = [
-    #     dataset.class_names, 
-    #     dataset.feature_names, 
-    #     dataset.categorical_names
-    # ]
-    # util.Debug.log(
-    #     contents=contents,
-    #     pformat=True
-    # )
-    # util.Debug.log(contents=['\n'])
-
     # train_and_save_model(dataset)
 
-    util.Debug.log(contents=['['])
     tabular_driver(dataset, 0.34)
-    util.Debug.log(contents=[']'])
     
 
 if __name__ == "__main__":
