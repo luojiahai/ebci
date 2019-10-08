@@ -4,7 +4,7 @@ from sklearn.externals import joblib
 import pprint
 from tqdm import tqdm
 from random import shuffle
-
+from sklearn.metrics import classification_report
 import src.util as util
 import src.eci as eci
 
@@ -54,7 +54,7 @@ def tabular_driver(dataset, gamma):
     if ((subject_pred != factual_pred) 
         or (factual_pred == contrastive_pred)
         or (subject_pred == contrastive_pred)):
-        print("ExplantionError: explanation not exist")
+        print("ExplantionError: explanation not found")
 
     print(subject_vec, factual_vec, contrastive_vec)
 
